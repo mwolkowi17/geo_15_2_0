@@ -39,6 +39,26 @@ export class metodyPomocnicze {
     return wynik;
   }
 
+  //teksy wyswietlane w pulapce
+
+  static pokazTekstPulapki(krokNaPlanszy) {
+    if (krokNaPlanszy === 3) {
+      return ["Niespodzianka!", "Idziesz jedno pole do przodu."];
+    }
+    if (krokNaPlanszy === 6) {
+      return ["Zasadzka!", "Cofasz się o dwa pola."];
+    }
+    if (krokNaPlanszy === 8) {
+      return ["Niespodzianka!", "Idziesz dwa pola do przodu."];
+    }
+    if (krokNaPlanszy === 11) {
+      return ["Zasadzka!", "Wracasz na start."];
+    }
+    if (krokNaPlanszy === 14) {
+      return ["Zasadzka!", "Cofasz się o jedno pole."];
+    }
+  }
+
   // funkcja sterująca który wynik rzutu kostką wyświetlić z kolekcji wszystkich możliwych widoków
   static pokaz_kostke(a, grafika) {
     for (let x = 0; x < 6; x++) {

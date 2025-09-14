@@ -12,6 +12,8 @@ const emit = defineEmits([
     "przegrana",
     "koniec-etap1-focus",
     "przegrana-focus",
+    "odejmij-gwiazdke",
+    "reset-gwiazdek"
 ]);
 
 const props = defineProps({
@@ -32,6 +34,8 @@ onMounted(() => {
     if (props.ifButtonOnFocusMain1 === true) {
         button_rzut.value.focus()
     }
+
+     emit('reset-gwiazdek')
 })
 
 //to chyba nie jest potrzebne ale jest w funckji
@@ -53,7 +57,7 @@ const ilosc_szans = ref(3);
 const if_rzuc_kostka = ref(true)
 
 //informacja o ruchu gracza
-const if_ruch_gracza = ref(true)
+const if_ruch_gracza = ref(false)
 
 //widoczność kostki 
 const if_widok_kostki = ref(false);
@@ -65,6 +69,10 @@ const if_widok_pulapki = ref(false)
 const if_widok_quizz1 = ref(false);
 //roboczo do edycji pytań
 //const if_widok_quizz1 = ref(true);
+
+//wartości propsów planszy zasadzka
+const titleTrap = ref("Zasadzka!")
+const textTrap = ref("Cofasz się o 2 pola.")
 
 //widoki szans na planszy
 
@@ -266,8 +274,11 @@ async function kostka_click() {
                 //dodaje wpadki do licznika wpadek
                 liczba_wpadek.value = liczba_wpadek.value + 1
                 //  pokazuje planszę pułapki
-                setTimeout(() => {
+                setTimeout(async() => {
                     if_widok_pulapki.value = true;
+                    await nextTick()
+                     titleTrap.value=metodyPomocnicze.pokazTekstPulapki(krok_gracz1_na_planszy.value)[0]
+                     textTrap.value=metodyPomocnicze.pokazTekstPulapki(krok_gracz1_na_planszy.value)[1]
                     const sound_cofasz = new Audio(new URL('../assets/zla_odp.mp3', import.meta.url).href);
                     sound_cofasz.play();
                 }, 1000)
@@ -318,12 +329,12 @@ const koniecQuizu = () => {
 
 const koniecQuizuFocusOn = async () => {
     if (krok_gracz1_na_planszy.value < 15) {
-        //if_ruch_gracza.value=false
+        //
         //if_rzuc_kostka.value = true
 
         napisRuch.value.focus()
 
-
+if_ruch_gracza.value=false
         napisRuch.value.focus()
         setTimeout(() => {
 
@@ -333,8 +344,9 @@ const koniecQuizuFocusOn = async () => {
 
         setTimeout(() => {
             //const button_rzut2=useTemplateRef('rzut1')
+            if_ruch_gracza.value=false
             button_rzut.value.focus()
-        }, 1000)
+        }, 1200)
 
         // setTimeout(() => {
         //     if_ruch_gracza.value = false
@@ -365,40 +377,90 @@ const koniecQuizuFocusOn = async () => {
 const koniecPulapki = () => {
     console.log("emmiter - krok do tyłu");
     console.log(krok_gracz1_na_planszy.value);
-    krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 2;
-    ruch_lokalny = ruch_lokalny - 2;
-    console.log(krok_gracz1_na_planszy.value);
-    pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
-    pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+  
+     if (krok_gracz1_na_planszy.value === 3) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value +1;
+        ruch_lokalny = ruch_lokalny + 1;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+        pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    }
+    if (krok_gracz1_na_planszy.value === 6) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 2;
+        ruch_lokalny = ruch_lokalny - 2;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+        pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    }
+    if ( krok_gracz1_na_planszy.value === 8) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value + 2;
+        ruch_lokalny = ruch_lokalny + 2;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+        pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    }
+    if (krok_gracz1_na_planszy.value === 11) {
+        krok_gracz1_na_planszy.value = 0;
+        ruch_lokalny = 0;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = 110
+        pionek_top.value = 205
+    }
+    if ( krok_gracz1_na_planszy.value === 14) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 1;
+        ruch_lokalny = ruch_lokalny - 1;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+        pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    }
+   
+    // koniec tego rozwiązania
+
     if_ruch_gracza.value = false
     if_rzuc_kostka.value = true;
-
-    // const buttonRzutVis = new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //         resolve(document.querySelector(".rzut1"))
-    //     }, 300);
-    // })
-
-    // buttonRzutVis.then((res) => { res.focus() })
 
 }
 
 const koniecPulapkiFocusOn = async () => {
     console.log("emmiter - krok do tyłu");
     console.log(krok_gracz1_na_planszy.value);
-    krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 2;
-    ruch_lokalny = ruch_lokalny - 2;
-    console.log(krok_gracz1_na_planszy.value);
-    pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
-    pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
-    // if_ruch_gracza.value=false
-    // if_rzuc_kostka.value = true;
-    // button_rzut.value.focus()
-    // const buttonRzutVis = new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //         resolve(document.querySelector(".rzut1"))
-    //     }, 300);
-    // })
+   if (krok_gracz1_na_planszy.value === 3) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value +1;
+        ruch_lokalny = ruch_lokalny + 1;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+        pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    }
+    if (krok_gracz1_na_planszy.value === 6) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 2;
+        ruch_lokalny = ruch_lokalny - 2;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+        pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    }
+    if ( krok_gracz1_na_planszy.value === 8) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value + 2;
+        ruch_lokalny = ruch_lokalny + 2;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+        pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    }
+    if (krok_gracz1_na_planszy.value === 11) {
+        krok_gracz1_na_planszy.value = 0;
+        ruch_lokalny = 0;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = 30
+        pionek_top.value = 330
+    }
+    if ( krok_gracz1_na_planszy.value === 14) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 1;
+        ruch_lokalny = ruch_lokalny - 1;
+        console.log(krok_gracz1_na_planszy.value);
+        pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+        pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    }
+   
+    // koniec tego rozwiązania
 
     // buttonRzutVis.then((res) => { res.focus() })
     napisRuch.value.focus()
@@ -412,6 +474,7 @@ const koniecPulapkiFocusOn = async () => {
 
     setTimeout(() => {
         //const button_rzut2=useTemplateRef('rzut1')
+        if_ruch_gracza.value=false
         button_rzut.value.focus()
 
 
@@ -429,6 +492,8 @@ const odejmijSzanse = () => {
     ilosc_szans.value = ilosc_szans.value - 1;
 
     console.log("ilosc_szans:" + ilosc_szans.value);
+
+    emit('odejmij-gwiazdke')
 
     if (ilosc_szans.value === 2) {
         if_szansa3.value = false;
@@ -502,7 +567,8 @@ function clickWithFocus() {
     <button class="rzut1 my-button anim1" ref="rzut1" v-if="if_rzuc_kostka" @click="clickWithMouse"
         @keydown.enter="clickWithFocus" role="button">Rzuć kostką</button>
     <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()"
-        @koniec-pulapka-focus="if_widok_pulapki = false, koniecPulapkiFocusOn()" :ifButtonOnFocusTrap="ifTrapFocusOn" />
+        @koniec-pulapka-focus="if_widok_pulapki = false, koniecPulapkiFocusOn()" :ifButtonOnFocusTrap="ifTrapFocusOn"
+        :titleOfTrap="titleTrap" :textOfTrap="textTrap" />
     <SceneQuizz1 v-if="if_widok_quizz1" @koniec-quizz="if_widok_quizz1 = false, koniecQuizu()"
         @koniec-quizz-focus="if_widok_quizz1 = false, ifRzucKostkaButtonOnFocus = true, koniecQuizuFocusOn()"
         @odejmij-szanse="odejmijSzanse" msg="Hej" :miejsceNaPlanszy="krok_gracz1_na_planszy"

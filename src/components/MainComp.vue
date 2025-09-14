@@ -40,6 +40,9 @@ const ifLoseFocusOn = ref(false)
 //proba z focusem generalnym
 const ifInFocusGlobal = ref(false)
 
+//wartość bazowa gwiazdek w levelu 2
+const starsInLevel2 = ref(4)
+
 //sterowanie widokami gry
 function change() {
     if_plansza_poczatkowa.value = false;
@@ -257,6 +260,16 @@ function koniec_gry() {
     if_plansza_poczatkowa.value = true;
 }
 
+function odejmiGwiazdkeEtap2() {
+    starsInLevel2.value = starsInLevel2.value - 1
+    console.log(starsInLevel2.value)
+}
+
+function resetGwiazdekEtap2() {
+    starsInLevel2.value = 4
+    console.log(starsInLevel2.value)
+}
+
 // preload images
 const newImages = ref([])
 
@@ -282,7 +295,7 @@ onMounted(async () => {
                 :ifButtonOnFocusLevelTwo="ifLevelTwoChoiseFocusOn" />
             <SceneMain1 v-if="if_main1" @koniec-etap1="koniec_etapu1" @koniec-etap1-focus="koniec_etapu1_focus"
                 @przegrana="loose_after_level_one" @przegrana-focus="loose_after_level_one_focus"
-                :ifButtonOnFocusMain1="ifMain1FocusOn" />
+                @odejmij-gwiazdke="odejmiGwiazdkeEtap2" @reset-gwiazdek="resetGwiazdekEtap2" :ifButtonOnFocusMain1="ifMain1FocusOn" />
             <SceneEndLevelOne v-if="if_end_scene_level_one" @gram-dalej="graj_dalej_po_scenie1"
                 @gram-dalej-focus="graj_dalej_po_scenie1_focus" @koniec-gry="koniec_gry" @koniec-gry-focus=""
                 :ifButtonOnFocus="ifInFocusGlobal" />
@@ -290,7 +303,8 @@ onMounted(async () => {
                 @jeszcze-raz-focus="graj_jeszcze_raz_po_scenie1_focus" @koniec-gry="koniec_gry"
                 :ifButtonOnFocus="ifInFocusGlobal" />
             <SceneMain2 v-if="if_main2" @koniec-etap2="koniec_etapu1" @koniec-etap2-focus="koniec_etapu1_focus"
-                @przegrana2="loose" @przegrana2-focus="loose_focus" :ifButtonOnFocusMain2="ifMain2FocusOn" />
+                @przegrana2="loose" @przegrana2-focus="loose_focus" :ifButtonOnFocusMain2="ifMain2FocusOn"
+                :starsNumber="starsInLevel2" />
             <SceneWin v-if="if_win" @jeszcze-raz="graj_jeszcze_raz" @koniec-gry="koniec_gry"
                 @jeszcze-raz-focus="graj_jeszcze_raz_focus" @koniec-gry-focus=""
                 :ifButtonOnFocusSceneWin="ifWinFocusOn" />
