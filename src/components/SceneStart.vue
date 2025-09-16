@@ -90,6 +90,7 @@ const stageParent = ref(null)
 }
 
 .start:focus {
-  outline: 5px solid #e90808;
+  outline: 5px solid #000000;
+  outline-offset: 10px;
 }
 </style>

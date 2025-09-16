@@ -676,7 +676,8 @@ function clickWithMouse() {
 }
 
 .ruch1:focus {
-    outline: 5px solid rgb(29, 56, 80);
+    outline: 5px solid #000000;
+  outline-offset: 10px;
 }
 
 .ruch-text {
@@ -729,7 +730,8 @@ function clickWithMouse() {
 }
 
 .rzut1:focus {
-    outline: 5px solid #e90808;
+     outline: 5px solid #000000;
+  outline-offset: 10px;
 }
 
 .kostka {

@@ -35,7 +35,7 @@ onMounted(() => {
         button_rzut.value.focus()
     }
 
-     emit('reset-gwiazdek')
+    emit('reset-gwiazdek')
 })
 
 //to chyba nie jest potrzebne ale jest w funckji
@@ -274,11 +274,11 @@ async function kostka_click() {
                 //dodaje wpadki do licznika wpadek
                 liczba_wpadek.value = liczba_wpadek.value + 1
                 //  pokazuje planszę pułapki
-                setTimeout(async() => {
+                setTimeout(async () => {
                     if_widok_pulapki.value = true;
                     await nextTick()
-                     titleTrap.value=metodyPomocnicze.pokazTekstPulapki(krok_gracz1_na_planszy.value)[0]
-                     textTrap.value=metodyPomocnicze.pokazTekstPulapki(krok_gracz1_na_planszy.value)[1]
+                    titleTrap.value = metodyPomocnicze.pokazTekstPulapki(krok_gracz1_na_planszy.value)[0]
+                    textTrap.value = metodyPomocnicze.pokazTekstPulapki(krok_gracz1_na_planszy.value)[1]
                     const sound_cofasz = new Audio(new URL('../assets/zla_odp.mp3', import.meta.url).href);
                     sound_cofasz.play();
                 }, 1000)
@@ -334,7 +334,7 @@ const koniecQuizuFocusOn = async () => {
 
         napisRuch.value.focus()
 
-if_ruch_gracza.value=false
+        if_ruch_gracza.value = false
         napisRuch.value.focus()
         setTimeout(() => {
 
@@ -344,7 +344,7 @@ if_ruch_gracza.value=false
 
         setTimeout(() => {
             //const button_rzut2=useTemplateRef('rzut1')
-            if_ruch_gracza.value=false
+            if_ruch_gracza.value = false
             button_rzut.value.focus()
         }, 1200)
 
@@ -377,9 +377,9 @@ if_ruch_gracza.value=false
 const koniecPulapki = () => {
     console.log("emmiter - krok do tyłu");
     console.log(krok_gracz1_na_planszy.value);
-  
-     if (krok_gracz1_na_planszy.value === 3) {
-        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value +1;
+
+    if (krok_gracz1_na_planszy.value === 3) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value + 1;
         ruch_lokalny = ruch_lokalny + 1;
         console.log(krok_gracz1_na_planszy.value);
         pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
@@ -392,7 +392,7 @@ const koniecPulapki = () => {
         pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
         pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
     }
-    if ( krok_gracz1_na_planszy.value === 8) {
+    if (krok_gracz1_na_planszy.value === 8) {
         krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value + 2;
         ruch_lokalny = ruch_lokalny + 2;
         console.log(krok_gracz1_na_planszy.value);
@@ -406,14 +406,14 @@ const koniecPulapki = () => {
         pionek_left.value = 110
         pionek_top.value = 205
     }
-    if ( krok_gracz1_na_planszy.value === 14) {
+    if (krok_gracz1_na_planszy.value === 14) {
         krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 1;
         ruch_lokalny = ruch_lokalny - 1;
         console.log(krok_gracz1_na_planszy.value);
         pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
         pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
     }
-   
+
     // koniec tego rozwiązania
 
     if_ruch_gracza.value = false
@@ -424,8 +424,8 @@ const koniecPulapki = () => {
 const koniecPulapkiFocusOn = async () => {
     console.log("emmiter - krok do tyłu");
     console.log(krok_gracz1_na_planszy.value);
-   if (krok_gracz1_na_planszy.value === 3) {
-        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value +1;
+    if (krok_gracz1_na_planszy.value === 3) {
+        krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value + 1;
         ruch_lokalny = ruch_lokalny + 1;
         console.log(krok_gracz1_na_planszy.value);
         pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
@@ -438,7 +438,7 @@ const koniecPulapkiFocusOn = async () => {
         pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
         pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
     }
-    if ( krok_gracz1_na_planszy.value === 8) {
+    if (krok_gracz1_na_planszy.value === 8) {
         krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value + 2;
         ruch_lokalny = ruch_lokalny + 2;
         console.log(krok_gracz1_na_planszy.value);
@@ -452,14 +452,14 @@ const koniecPulapkiFocusOn = async () => {
         pionek_left.value = 30
         pionek_top.value = 330
     }
-    if ( krok_gracz1_na_planszy.value === 14) {
+    if (krok_gracz1_na_planszy.value === 14) {
         krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 1;
         ruch_lokalny = ruch_lokalny - 1;
         console.log(krok_gracz1_na_planszy.value);
         pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
         pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
     }
-   
+
     // koniec tego rozwiązania
 
     // buttonRzutVis.then((res) => { res.focus() })
@@ -474,7 +474,7 @@ const koniecPulapkiFocusOn = async () => {
 
     setTimeout(() => {
         //const button_rzut2=useTemplateRef('rzut1')
-        if_ruch_gracza.value=false
+        if_ruch_gracza.value = false
         button_rzut.value.focus()
 
 
@@ -544,7 +544,7 @@ function clickWithFocus() {
         <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="ikona"
             aria-label="Pionek"></div>
         <h2 class="title">Poziom 1</h2>
-        <h2 class="szanse-napis">szanse:</h2>
+        <h2 class="szanse-napis">szanse</h2>
         <div class="szanse-container">
             <img class="szansa" v-if="if_szansa1" src="../assets/szansa.png">
             <img class="szansa" v-if="if_szansa2" src="../assets/szansa.png">
@@ -695,7 +695,9 @@ function clickWithFocus() {
 }
 
 .ruch1:focus {
-    outline: 5px solid rgb(29, 56, 80);
+    outline: 5px solid black;
+    outline-offset: 10px;
+    /* border-radius: 30px; */
 }
 
 .ruch-text {
@@ -748,7 +750,8 @@ function clickWithFocus() {
 }
 
 .rzut1:focus {
-    outline: 5px solid #e90808;
+    outline: 5px solid #000000;
+    outline-offset: 10px;
 }
 
 .kostka {

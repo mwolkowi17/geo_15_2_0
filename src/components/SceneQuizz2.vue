@@ -567,7 +567,8 @@ li {
 }
 
 .button-dalej:focus {
-  outline: 5px solid #9a009e !important;
+ outline: 5px solid #000000;
+  outline-offset: 10px;
 }
 
 
@@ -676,7 +677,8 @@ li {
 }
 
 .button-dalej-dobrze:focus {
-  outline: 5px solid #ffffff !important;
+   outline: 5px solid #000000;
+  outline-offset: 10px;
 }
 /* The animation code */
 @keyframes example {

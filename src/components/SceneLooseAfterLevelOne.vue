@@ -113,8 +113,8 @@ przegrana_sound.play();
 }
 
 .gram-jeszcze-1:focus {
-    /* outline: thick double #08e926; */
-    outline: 5px solid #08e926;
+  outline: 5px solid #000000;
+  outline-offset: 10px;
 }
 
 .zakoncz-gre {
@@ -141,8 +141,8 @@ przegrana_sound.play();
 }
 
 .zakoncz-gre:focus {
-    /* outline: thick double #08e926; */
-    outline: 5px solid #08e926;
+   outline: 5px solid #000000;
+  outline-offset: 10px;
 }
 
 /* The animation code */

@@ -150,8 +150,8 @@ function koniecPulapki() {
 }
 
 .przycisk_pulapka1:focus {
-  /* outline: thick double #08e926; */
-  outline: 5px solid #ffffff;
+  outline: 5px solid #000000;
+  outline-offset: 10px;
 }
 
 /* The animation code */

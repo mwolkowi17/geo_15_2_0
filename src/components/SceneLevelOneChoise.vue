@@ -73,9 +73,8 @@ onMounted(() => {
 }
 
 .level-button:focus {
-    /* border: 4px solid #08e926; */
-    /* outline: thick double #08e926; */
-    outline: 5px solid #e90808;
+    outline: 5px solid #000000;
+    outline-offset: 10px;
 }
 
 .latwy {
