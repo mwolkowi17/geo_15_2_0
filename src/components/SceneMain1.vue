@@ -23,6 +23,7 @@ const props = defineProps({
 //referencje do el html używane do obsługi focusa
 const button_rzut = useTemplateRef('rzut1')
 const napisRuch = useTemplateRef('ruchGracza')
+const kostkaOczka = useTemplateRef('oczkaKostka')
 
 //obsługa focusa
 const ifQuizzFocusOn = ref(false)
@@ -126,7 +127,7 @@ async function kostka_click() {
     if_ruch_gracza.value = true
     await nextTick()
     // if(napisRuch.value){
-    napisRuch.value.focus()
+    // napisRuch.value.focus()
     //}
     if_rzuc_kostka.value = false //  ukryj przycisk rzuć kostką
 
@@ -144,6 +145,8 @@ async function kostka_click() {
     // nowa funkcjonalnosc ograniczająca ilośc wpadek  
     let wartoscWyrzuconaFirst = metodyPomocnicze.rzucaj()
     console.log("oczka: " + wartoscWyrzuconaFirst)
+    await nextTick()
+    kostkaOczka.value.focus()
     if (liczba_wpadek.value < 2) {
         console.log("ilość wpadek: " + liczba_wpadek.value)
         liczba_wyrzucona.value = wartoscWyrzuconaFirst
@@ -551,7 +554,7 @@ function clickWithFocus() {
             <img class="szansa" v-if="if_szansa3" src="../assets/szansa.png">
         </div>
 
-        <div class="kostka" :class="{
+        <div class="kostka" ref="oczkaKostka" tabindex="0" :class="{
             'kostka1image1': isSet1,
             'kostka1image2': isSet2,
             'kostka1image3': isSet3,
@@ -765,6 +768,12 @@ function clickWithFocus() {
     z-index: 2;
 
 }
+
+.kostka:focus {
+    outline: 5px solid #000000;
+    outline-offset: 35px;
+}
+
 
 .kostka1image1 {
     background-image: url("../assets/kostka_1oczko.png");
