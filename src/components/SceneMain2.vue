@@ -335,7 +335,7 @@ const koniecQuizu = () => {
     }
 }
 
-const koniecQuizuFocusOn = () => {
+const koniecQuizuFocusOn = async() => {
     if (krok_gracz1_na_planszy.value < 15) {
         // if_rzuc_kostka.value = true
 
@@ -368,6 +368,8 @@ const koniecQuizuFocusOn = () => {
     if (krok_gracz1_na_planszy.value === 15) {
         if_rzuc_kostka.value = false
         // if_ruch_gracza.value = false
+         napisRuch.value.focus()
+        await nextTick()
         console.log("plansza win focus!")
         ifFocusEmitGlobal.value = true
         emit('koniec-etap2-focus')
