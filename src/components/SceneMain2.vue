@@ -531,7 +531,7 @@ function clickWithMouse() {
         <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="ikona"
             aria-label="Pionek"></div>
         <h2 class="title">Poziom 2</h2>
-        <h2 class="szanse-napis">szanse:</h2>
+        <h2 class="szanse-napis">Szanse</h2>
         <div class="szanse-container">
             <img class="szansa" v-if="if_szansa1" src="../assets/szansa.png">
             <img class="szansa" v-if="if_szansa2" src="../assets/szansa.png">
@@ -546,7 +546,7 @@ function clickWithMouse() {
             'kostka1image4': isSet4,
             'kostka1image5': isSet5,
             'kostka1image6': isSet6
-        }" v-if="if_widok_kostki" role="img" alt="ikona widoku kostki" :aria-label=wyrzuconaWartoscKostki></div>
+        }" v-if="if_widok_kostki" role="img" alt="ikona widoku kostki" aria-live="polite" :aria-label=wyrzuconaWartoscKostki></div>
     </div>
 
     <div class="ruch1" ref="ruchGracza" v-if="if_ruch_gracza" tabindex="0">

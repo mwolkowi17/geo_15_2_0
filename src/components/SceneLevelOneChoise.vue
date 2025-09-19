@@ -18,7 +18,7 @@ onMounted(() => {
 <template>
     <div class="tlo-level1" role="img" aria-label="Wybór poziomu">
         <h1 class="sr-only">Wybór poziomu</h1>
-        <h2 class="title">Poziom trudności</h2>
+       <!-- <h2 class="title">Poziom trudności</h2>-->
     </div>
     <button class="level-button latwy my-button" ref="button-focus" @click="$emit('wybor-levelu1')"
         @keydown.enter="$emit('wybor-levelu1-focus')" role="button">Poziom 1</button>

@@ -241,7 +241,7 @@ const pytanieToDisplay = (miejsce) => {
   </div>
 
   <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
-    <div class="info" ref="info" tabindex="0">
+    <div class="info" ref="info" tabindex="0" aria-label="Brawo! Prawidłowa odpowiedź.">
       <p class="naglowek-after-quizz naglowek-dobrze">Brawo!</p>
       <p class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</p>
     </div>
@@ -254,7 +254,7 @@ const pytanieToDisplay = (miejsce) => {
       if_button_dalej_dobrze = false
       " role="button">Dalej</button>
   <div class="plansza-zle" v-if="if_odpowiedz_zle">
-    <div class="info" ref="info" tabindex="0">
+    <div class="info" ref="info" tabindex="0" aria-label="Źle! Błędna odpowiedź. Tracisz jedną szansę">
       <p class="naglowek-after-quizz naglowek-zle">Źle!</p>
       <p class="napis-odpowiedz napis-zle">Błędna odpowiedź.</p>
     </div>
